@@ -102,5 +102,8 @@
   },
   "eslintIgnore": [
     "dist/*"
-  ]
+  ],
+  "resolutions": {
+    "@types/react": "^17.0.0"
+  }
 }

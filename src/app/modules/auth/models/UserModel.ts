@@ -5,12 +5,12 @@ import {UserEmailSettingsModel} from './UserEmailSettingsModel'
 import {UserSocialNetworksModel} from './UserSocialNetworksModel'
 
 export interface UserModel {
-  id: number
+  id: string
   username: string
   password: string | undefined
   email: string
-  first_name: string
-  last_name: string
+  first_name?: string
+  last_name?: string
   fullname?: string
   occupation?: string
   companyName?: string

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, {useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import {useDispatch} from 'react-redux'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
@@ -8,7 +8,7 @@ import * as auth from '../redux/AuthRedux'
 import {register} from '../redux/AuthCRUD'
 import {Link} from 'react-router-dom'
 import {toAbsoluteUrl} from '../../../../_metronic/helpers'
-import { PasswordMeterComponent } from "../../../../_metronic/assets/ts/components";
+import {PasswordMeterComponent} from '../../../../_metronic/assets/ts/components'
 
 const initialValues = {
   firstname: '',
@@ -55,7 +55,13 @@ export function Registration() {
     onSubmit: (values, {setStatus, setSubmitting}) => {
       setLoading(true)
       setTimeout(() => {
-        register(values.email, values.firstname, values.lastname, values.password, values.changepassword)
+        register(
+          values.email,
+          values.firstname,
+          values.lastname,
+          values.password,
+          values.changepassword
+        )
           .then(({data: {access_token}}) => {
             setLoading(false)
             dispatch(auth.actions.login(access_token))
@@ -69,9 +75,9 @@ export function Registration() {
     },
   })
 
-  useEffect(()=>{
-    PasswordMeterComponent.bootstrap();
-  }, []);
+  useEffect(() => {
+    PasswordMeterComponent.bootstrap()
+  }, [])
 
   return (
     <form
@@ -235,25 +241,17 @@ export function Registration() {
           </div>
           {/* begin::Meter */}
           <div
-              className="d-flex align-items-center mb-3"
-              data-kt-password-meter-control="highlight"
+            className='d-flex align-items-center mb-3'
+            data-kt-password-meter-control='highlight'
           >
-            <div
-                className="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-            ></div>
-            <div
-                className="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-            ></div>
-            <div
-                className="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-            ></div>
-            <div
-                className="flex-grow-1 bg-secondary bg-active-success rounded h-5px"
-            ></div>
+            <div className='flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2'></div>
+            <div className='flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2'></div>
+            <div className='flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2'></div>
+            <div className='flex-grow-1 bg-secondary bg-active-success rounded h-5px'></div>
           </div>
           {/* end::Meter */}
         </div>
-        <div className="text-muted">
+        <div className='text-muted'>
           Use 8 or more characters with a mix of letters, numbers & symbols.
         </div>
       </div>
