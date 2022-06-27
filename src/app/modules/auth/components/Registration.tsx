@@ -55,13 +55,7 @@ export function Registration() {
     onSubmit: (values, {setStatus, setSubmitting}) => {
       setLoading(true)
       setTimeout(() => {
-        register(
-          values.email,
-          values.firstname,
-          values.lastname,
-          values.password,
-          values.changepassword
-        )
+        register(values.email, values.firstname, values.lastname, values.password)
           .then(({data: {access_token}}) => {
             setLoading(false)
             dispatch(auth.actions.login(access_token))
