@@ -24,6 +24,8 @@ import {MetronicI18nProvider} from './_metronic/i18n/Metronici18n'
  **/
 import './_metronic/assets/sass/style.scss'
 import './_metronic/assets/sass/style.react.scss'
+import {QueryClient, QueryClientProvider} from 'react-query'
+import {ReactQueryDevtools} from 'react-query/devtools'
 /**
  * Base URL of the website.
  *
@@ -46,14 +48,20 @@ _redux.setupAxios(axios, store)
 
 Chart.register(...registerables)
 
+const queryClient = new QueryClient()
+
 ReactDOM.render(
-  <MetronicI18nProvider>
-    <Provider store={store}>
-      {/* Asynchronously persist redux stores and show `SplashScreen` while it's loading. */}
-      <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
-        <App basename={PUBLIC_URL} />
-      </PersistGate>
-    </Provider>
-  </MetronicI18nProvider>,
+  <QueryClientProvider client={queryClient}>
+    <MetronicI18nProvider>
+      <Provider store={store}>
+        {/* Asynchronously persist redux stores and show `SplashScreen` while it's loading. */}
+        <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
+          <App basename={PUBLIC_URL} />
+        </PersistGate>
+      </Provider>
+    </MetronicI18nProvider>
+    <ReactQueryDevtools initialIsOpen={false} />
+  </QueryClientProvider>,
+
   document.getElementById('root')
 )

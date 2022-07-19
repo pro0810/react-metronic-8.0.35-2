@@ -60,7 +60,7 @@ const Topbar: FC = () => {
           {/* begin::Menu wrapper */}
           <div
             className={clsx(
-              'btn btn-icon btn-active-light-primary btn-custom',
+              'btn btn-icon btn-active-light-primary btn-custom position-relative',
               toolbarButtonHeightClass
             )}
             id='kt_drawer_chat_toggle'
@@ -112,7 +112,7 @@ const Topbar: FC = () => {
           >
             <img
               className='h-25px w-25px rounded'
-              src={toAbsoluteUrl('/media/avatars/150-25.jpg')}
+              src={toAbsoluteUrl('/media/avatars/blank.png')}
               alt='metronic'
             />
           </div>
