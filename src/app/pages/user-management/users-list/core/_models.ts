@@ -6,9 +6,9 @@ export type User = {
   email?: string
   position?: string
   role?: string
-  last_login?: string
-  two_steps?: boolean
-  joined_day?: string
+  updatedAt?: string
+  isEmailVerified?: boolean
+  createdAt?: string
   online?: boolean
   initials?: {
     label: string

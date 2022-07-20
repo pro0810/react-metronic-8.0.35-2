@@ -1,11 +1,11 @@
 import {FC} from 'react'
 
 type Props = {
-  two_steps?: boolean
+  isEmailVerified?: boolean
 }
 
-const UserTwoStepsCell: FC<Props> = ({two_steps}) => (
-  <> {two_steps && <div className='badge badge-light-success fw-bolder'>Enabled</div>}</>
+const UserTwoStepsCell: FC<Props> = ({isEmailVerified}) => (
+  <> {isEmailVerified && <div className='badge badge-light-success fw-bolder'>Verified</div>}</>
 )
 
 export {UserTwoStepsCell}

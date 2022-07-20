@@ -28,20 +28,22 @@ const usersColumns: ReadonlyArray<Column<User>> = [
       <UserCustomHeader tableProps={props} title='Last login' className='min-w-125px' />
     ),
     id: 'last_login',
-    Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].last_login} />,
+    Cell: ({...props}) => <UserLastLoginCell last_login={props.data[props.row.index].updatedAt} />,
   },
   {
     Header: (props) => (
-      <UserCustomHeader tableProps={props} title='Two steps' className='min-w-125px' />
+      <UserCustomHeader tableProps={props} title='Email Verified' className='min-w-125px' />
     ),
-    id: 'two_steps',
-    Cell: ({...props}) => <UserTwoStepsCell two_steps={props.data[props.row.index].two_steps} />,
+    id: 'isEmailVerified',
+    Cell: ({...props}) => (
+      <UserTwoStepsCell isEmailVerified={props.data[props.row.index].isEmailVerified} />
+    ),
   },
   {
     Header: (props) => (
       <UserCustomHeader tableProps={props} title='Joined day' className='min-w-125px' />
     ),
-    accessor: 'joined_day',
+    accessor: 'createdAt',
   },
   {
     Header: (props) => (
