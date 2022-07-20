@@ -7,7 +7,7 @@ import {MenuTestPage} from '../pages/MenuTestPage'
 export function PrivateRoutes() {
   const BuilderPageWrapper = lazy(() => import('../pages/layout-builder/BuilderPageWrapper'))
   const UsersPageWrapper = lazy(() => import('../pages/user-management/UsersPage'))
-  const ReportsPageWrapper = lazy(() => import('../pages/user-management/ReportsPage'))
+  const ReportsPageWrapper = lazy(() => import('../pages/report-management/ReportsPage'))
   const ProfilePage = lazy(() => import('../modules/profile/ProfilePage'))
   const WizardsPage = lazy(() => import('../modules/wizards/WizardsPage'))
   const AccountPage = lazy(() => import('../modules/accounts/AccountPage'))
