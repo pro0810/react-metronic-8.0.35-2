@@ -20,10 +20,12 @@ const editReportSchema = Yup.object().shape({
     .min(3, 'Minimum 3 symbols')
     .max(50, 'Maximum 50 symbols')
     .required('Email is required'),
-  name: Yup.string()
-    .min(3, 'Minimum 3 symbols')
-    .max(50, 'Maximum 50 symbols')
-    .required('Name is required'),
+  url: Yup.string()
+    // .url(
+    //   // /((http|https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+    //   'Enter correct url!'
+    // )
+    .required('Url is required'),
 })
 
 const ReportEditModalForm: FC<Props> = ({report, isReportLoading}) => {
@@ -32,11 +34,12 @@ const ReportEditModalForm: FC<Props> = ({report, isReportLoading}) => {
 
   const [reportForEdit] = useState<Report>({
     ...report,
-    avatar: report.avatar || initialReport.avatar,
-    role: report.role || initialReport.role,
-    position: report.position || initialReport.position,
-    name: report.name || initialReport.name,
+    url: report.url || initialReport.url,
     email: report.email || initialReport.email,
+    avatar: report.avatar || initialReport.avatar,
+    name: report.name || initialReport.name,
+    type: report.type || initialReport.type,
+    status: report.status || initialReport.status,
   })
 
   const cancel = (withRefresh?: boolean) => {
@@ -154,29 +157,29 @@ const ReportEditModalForm: FC<Props> = ({report, isReportLoading}) => {
           {/* begin::Input group */}
           <div className='fv-row mb-7'>
             {/* begin::Label */}
-            <label className='required fw-bold fs-6 mb-2'>Full Name</label>
+            <label className='required fw-bold fs-6 mb-2'>Url</label>
             {/* end::Label */}
 
             {/* begin::Input */}
             <input
-              placeholder='Full name'
-              {...formik.getFieldProps('name')}
+              placeholder='Url'
+              {...formik.getFieldProps('url')}
               type='text'
-              name='name'
+              name='url'
               className={clsx(
                 'form-control form-control-solid mb-3 mb-lg-0',
-                {'is-invalid': formik.touched.name && formik.errors.name},
+                {'is-invalid': formik.touched.url && formik.errors.url},
                 {
-                  'is-valid': formik.touched.name && !formik.errors.name,
+                  'is-valid': formik.touched.url && !formik.errors.url,
                 }
               )}
               autoComplete='off'
               disabled={formik.isSubmitting || isReportLoading}
             />
-            {formik.touched.name && formik.errors.name && (
+            {formik.touched.url && formik.errors.url && (
               <div className='fv-plugins-message-container'>
                 <div className='fv-help-block'>
-                  <span role='alert'>{formik.errors.name}</span>
+                  <span role='alert'>{formik.errors.url}</span>
                 </div>
               </div>
             )}
@@ -216,101 +219,65 @@ const ReportEditModalForm: FC<Props> = ({report, isReportLoading}) => {
           {/* end::Input group */}
 
           {/* begin::Input group */}
+          <div className='fv-row mb-7'>
+            {/* begin::Label */}
+            <label className='required fw-bold fs-6 mb-2'>Type</label>
+            {/* end::Label */}
 
-          <div className='d-flex fv-row mb-7'>
-            {/* begin::Radio */}
-            <div className='form-check form-check-custom form-check-solid'>
-              {/* begin::Label */}
-              <label className='fw-bold fs-6 me-3' htmlFor='kt_modal_update_email_verified_option'>
-                Verify Email
-              </label>
-              {/* end::Label */}
+            {/* begin::Input */}
+            {/* onst reportTypes = ['Blocked', 'Blank', 'Slow', 'Broken', 'Other'];
+const reportStatus = ['Pending', 'Accepted', 'Rejected', 'Approved', 'Cancelled']; */}
 
-              {/* begin::Input */}
-              <input
-                className='form-check-input'
-                {...formik.getFieldProps('isEmailVerified')}
-                name='isEmailVerified'
-                type='checkbox'
-                id='kt_modal_update_email_verified_option'
-                checked={formik.values.isEmailVerified}
-                disabled={formik.isSubmitting || isReportLoading}
-              />
-
-              {/* end::Input */}
-            </div>
-            {/* end::Radio */}
+            <select
+              className='form-select form-select-solid fw-bolder'
+              {...formik.getFieldProps('type')}
+              data-kt-select2='true'
+              data-placeholder='Select option'
+              data-allow-clear='true'
+              data-kt-report-table-type-option='type'
+              data-hide-search='true'
+              // onChange={(e) => setRole(e.target.value)}
+              // value={role}
+              disabled={formik.isSubmitting || isReportLoading}
+            >
+              <option value='Blocked'>Blocked</option>
+              <option value='Blank'>Blank</option>
+              <option value='Slow'>Slow</option>
+              <option value='Broken'>Broken</option>
+              <option value='Other'>Other</option>
+            </select>
+            {/* end::Input */}
           </div>
-
           {/* end::Input group */}
 
           {/* begin::Input group */}
-          <div className='mb-7'>
+          <div className='fv-row mb-7'>
             {/* begin::Label */}
-            <label className='required fw-bold fs-6 mb-5'>Role</label>
+            <label className='required fw-bold fs-6 mb-2'>Status</label>
             {/* end::Label */}
-            {/* begin::Roles */}
-            {/* begin::Input row */}
-            <div className='d-flex fv-row'>
-              {/* begin::Radio */}
-              <div className='form-check form-check-custom form-check-solid'>
-                {/* begin::Input */}
-                <input
-                  className='form-check-input me-3'
-                  {...formik.getFieldProps('role')}
-                  name='role'
-                  type='radio'
-                  value='customer'
-                  id='kt_modal_update_role_option_2'
-                  checked={formik.values.role === 'customer'}
-                  disabled={formik.isSubmitting || isReportLoading}
-                />
 
-                {/* end::Input */}
-                {/* begin::Label */}
-                <label className='form-check-label' htmlFor='kt_modal_update_role_option_2'>
-                  <div className='fw-bolder text-gray-800'>Customer</div>
-                  <div className='text-gray-600'>
-                    Best for people who need full access to analytics data, but don't need to update
-                    business settings
-                  </div>
-                </label>
-                {/* end::Label */}
-              </div>
-              {/* end::Radio */}
-            </div>
-            {/* end::Input row */}
-            <div className='separator separator-dashed my-5'></div>
-            {/* begin::Input row */}
-            <div className='d-flex fv-row'>
-              {/* begin::Radio */}
-              <div className='form-check form-check-custom form-check-solid'>
-                {/* begin::Input */}
-                <input
-                  className='form-check-input me-3'
-                  {...formik.getFieldProps('role')}
-                  name='role'
-                  type='radio'
-                  id='kt_modal_update_role_option_4'
-                  value='trial'
-                  checked={formik.values.role === 'trial'}
-                  disabled={formik.isSubmitting || isReportLoading}
-                />
-                {/* end::Input */}
-                {/* begin::Label */}
-                <label className='form-check-label' htmlFor='kt_modal_update_role_option_4'>
-                  <div className='fw-bolder text-gray-800'>Trial</div>
-                  <div className='text-gray-600'>
-                    Best for people who need to preview content data, but don't need to make any
-                    updates
-                  </div>
-                </label>
-                {/* end::Label */}
-              </div>
-              {/* end::Radio */}
-            </div>
-            {/* end::Input row */}
-            {/* end::Roles */}
+            {/* begin::Input */}
+            {/* onst reportTypes = ['Blocked', 'Blank', 'Slow', 'Broken', 'Other'];
+const reportStatus = ['Pending', 'Accepted', 'Rejected', 'Approved', 'Cancelled']; */}
+
+            <select
+              className='form-select form-select-solid fw-bolder'
+              {...formik.getFieldProps('status')}
+              data-kt-select2='true'
+              data-placeholder='Select option'
+              data-allow-clear='true'
+              data-kt-report-table-status-option='status'
+              data-hide-search='true'
+              // onChange={(e) => setRole(e.target.value)}
+              // value={role}
+              disabled={formik.isSubmitting || isReportLoading}
+            >
+              <option value='Pending'>Pending</option>
+              <option value='Accepted'>Accepted</option>
+              <option value='Rejected'>Rejected</option>
+              <option value='Approved'>Approved</option>
+            </select>
+            {/* end::Input */}
           </div>
           {/* end::Input group */}
         </div>

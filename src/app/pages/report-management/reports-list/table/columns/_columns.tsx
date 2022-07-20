@@ -16,40 +16,36 @@ const reportsColumns: ReadonlyArray<Column<Report>> = [
   },
   {
     Header: (props) => (
-      <ReportCustomHeader tableProps={props} title='Name' className='min-w-125px' />
+      <ReportCustomHeader tableProps={props} title='Email' className='min-w-125px' />
     ),
     id: 'name',
     Cell: ({...props}) => <ReportInfoCell report={props.data[props.row.index]} />,
   },
   {
     Header: (props) => (
-      <ReportCustomHeader tableProps={props} title='Role' className='min-w-125px' />
+      <ReportCustomHeader tableProps={props} title='Url' className='min-w-125px' />
     ),
-    accessor: 'role',
+    accessor: 'url',
   },
   {
     Header: (props) => (
-      <ReportCustomHeader tableProps={props} title='Last login' className='min-w-125px' />
+      <ReportCustomHeader tableProps={props} title='Type' className='min-w-125px' />
     ),
-    id: 'last_login',
-    Cell: ({...props}) => (
-      <ReportLastLoginCell last_login={props.data[props.row.index].updatedAt} />
-    ),
+    id: 'type',
+    Cell: ({...props}) => <ReportLastLoginCell last_login={props.data[props.row.index].type} />,
   },
   {
     Header: (props) => (
-      <ReportCustomHeader tableProps={props} title='Email Verified' className='min-w-125px' />
+      <ReportCustomHeader tableProps={props} title='Status' className='min-w-125px' />
     ),
-    id: 'isEmailVerified',
-    Cell: ({...props}) => (
-      <ReportTwoStepsCell isEmailVerified={props.data[props.row.index].isEmailVerified} />
-    ),
+    id: 'status',
+    Cell: ({...props}) => <ReportTwoStepsCell status={props.data[props.row.index].status} />,
   },
   {
     Header: (props) => (
-      <ReportCustomHeader tableProps={props} title='Joined day' className='min-w-125px' />
+      <ReportCustomHeader tableProps={props} title='Updated day' className='min-w-125px' />
     ),
-    accessor: 'createdAt',
+    accessor: 'updatedAt',
   },
   {
     Header: (props) => (

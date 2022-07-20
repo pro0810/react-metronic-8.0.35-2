@@ -7,8 +7,8 @@ import {Report, ReportsQueryResponse} from './_models'
 // const GET_REPORTS_URL = `${API_URL}/reports/query`
 
 const API_URL = process.env.REACT_APP_API_URL
-const REPORT_URL = `${API_URL}/customers`
-const GET_REPORTS_URL = `${API_URL}/customers`
+const REPORT_URL = `${API_URL}/reports`
+const GET_REPORTS_URL = `${API_URL}/reports`
 
 const getReports = (query: string): Promise<ReportsQueryResponse> => {
   return axios
@@ -33,9 +33,8 @@ const createReport = (report: Report): Promise<Report | undefined> => {
 const updateReport = (report: Report): Promise<Report | undefined> => {
   return axios
     .post(`${REPORT_URL}/${report.id}`, {
-      name: report.name,
-      isEmailVerified: report.isEmailVerified,
-      role: report.role,
+      status: report.status,
+      type: report.type,
     })
     .then((response: AxiosResponse<Response<Report>>) => response.data)
     .then((response: Response<Report>) => response.data)
