@@ -240,6 +240,7 @@ const reportStatus = ['Pending', 'Accepted', 'Rejected', 'Approved', 'Cancelled'
               // value={role}
               disabled={formik.isSubmitting || isReportLoading}
             >
+              <option></option>
               <option value='Blocked'>Blocked</option>
               <option value='Blank'>Blank</option>
               <option value='Slow'>Slow</option>
@@ -272,6 +273,7 @@ const reportStatus = ['Pending', 'Accepted', 'Rejected', 'Approved', 'Cancelled'
               // value={role}
               disabled={formik.isSubmitting || isReportLoading}
             >
+              <option></option>
               <option value='Pending'>Pending</option>
               <option value='Accepted'>Accepted</option>
               <option value='Rejected'>Rejected</option>

@@ -25,7 +25,7 @@ const getReportById = (id: ID): Promise<Report | undefined> => {
 
 const createReport = (report: Report): Promise<Report | undefined> => {
   return axios
-    .put(REPORT_URL, report)
+    .post(REPORT_URL, {status: report.status, type: report.type, url: report.url, email: report.email})
     .then((response: AxiosResponse<Response<Report>>) => response.data)
     .then((response: Response<Report>) => response.data)
 }
