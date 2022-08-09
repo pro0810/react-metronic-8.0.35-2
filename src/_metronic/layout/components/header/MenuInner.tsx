@@ -12,6 +12,7 @@ export function MenuInner() {
       <MenuItem title='Layout Builder' to='/builder' />
       <MenuItem title='Users' to='/users' />
       <MenuItem title='Reports' to='/reports' />
+      <MenuItem title='Urls' to='/urls' />
       <MenuInnerWithSub
         title='Crafted'
         to='/crafted'
